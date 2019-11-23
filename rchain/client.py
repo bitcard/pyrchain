@@ -69,7 +69,7 @@ class RClient:
 
     def propose(self) -> str:
         stub = ProposeServiceStub(self.channel)
-        response: ProposeResponse = stub.propose(PrintUnmatchedSendsQuery(printUnmatchedSends=True))
+        response: ProposeResponse = stub.propose(PrintUnmatchedSendsQuery(printUnmatchedSends=False))
         self._check_response(response)
         match_result = propose_result_match.match(response.result)
         assert match_result is not None
