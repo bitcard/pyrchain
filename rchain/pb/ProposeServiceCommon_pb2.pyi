@@ -2,6 +2,7 @@
 import sys
 from google.protobuf.descriptor import (
     Descriptor as google___protobuf___descriptor___Descriptor,
+    FileDescriptor as google___protobuf___descriptor___FileDescriptor,
 )
 
 from google.protobuf.message import (
@@ -10,7 +11,6 @@ from google.protobuf.message import (
 
 from typing import (
     Optional as typing___Optional,
-    Union as typing___Union,
 )
 
 from typing_extensions import (
@@ -22,25 +22,24 @@ builtin___bool = bool
 builtin___bytes = bytes
 builtin___float = float
 builtin___int = int
-if sys.version_info < (3,):
-    builtin___buffer = buffer
-    builtin___unicode = unicode
 
+
+DESCRIPTOR: google___protobuf___descriptor___FileDescriptor = ...
 
 class PrintUnmatchedSendsQuery(google___protobuf___message___Message):
     DESCRIPTOR: google___protobuf___descriptor___Descriptor = ...
-    printUnmatchedSends = ... # type: builtin___bool
+    printUnmatchedSends: builtin___bool = ...
 
     def __init__(self,
         *,
         printUnmatchedSends : typing___Optional[builtin___bool] = None,
         ) -> None: ...
-    if sys.version_info >= (3,):
-        @classmethod
-        def FromString(cls, s: builtin___bytes) -> PrintUnmatchedSendsQuery: ...
-    else:
-        @classmethod
-        def FromString(cls, s: typing___Union[builtin___bytes, builtin___buffer, builtin___unicode]) -> PrintUnmatchedSendsQuery: ...
-    def MergeFrom(self, other_msg: google___protobuf___message___Message) -> None: ...
-    def CopyFrom(self, other_msg: google___protobuf___message___Message) -> None: ...
     def ClearField(self, field_name: typing_extensions___Literal[u"printUnmatchedSends",b"printUnmatchedSends"]) -> None: ...
+type___PrintUnmatchedSendsQuery = PrintUnmatchedSendsQuery
+
+class ProposeResultQuery(google___protobuf___message___Message):
+    DESCRIPTOR: google___protobuf___descriptor___Descriptor = ...
+
+    def __init__(self,
+        ) -> None: ...
+type___ProposeResultQuery = ProposeResultQuery

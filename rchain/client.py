@@ -21,7 +21,9 @@ from .pb.DeployServiceV1_pb2 import (
     VisualizeBlocksResponse,
 )
 from .pb.DeployServiceV1_pb2_grpc import DeployServiceStub
-from .pb.ProposeServiceCommon_pb2 import PrintUnmatchedSendsQuery
+from .pb.ProposeServiceCommon_pb2 import (
+    PrintUnmatchedSendsQuery, ProposeResultQuery,
+)
 from .pb.ProposeServiceV1_pb2 import ProposeResponse
 from .pb.ProposeServiceV1_pb2_grpc import ProposeServiceStub
 from .pb.RhoTypes_pb2 import Expr, GDeployId, GUnforgeable, Par
@@ -39,8 +41,8 @@ GRPC_Response_T = Union[ProposeResponse,
 GRPC_StreamResponse_T = Union[BlockInfoResponse, VisualizeBlocksResponse]
 T = TypeVar("T")
 
-propose_result_match = re.compile(r'Success! Block (?P<block_hash>[0-9a-f]+) created and added.')
-
+propose_response_match = re.compile(r'Success: proposing block with seqNum (?P<seq_num>[0-9]+)')
+propose_result_response_match = re.compile(r'Success! Block (?P<block_hash>[0-9a-f]+) created and added.')
 
 class RClientException(Exception):
 
@@ -173,7 +175,16 @@ class RClient:
         stub = ProposeServiceStub(self.channel)
         response: ProposeResponse = stub.propose(PrintUnmatchedSendsQuery(printUnmatchedSends=False))
         self._check_response(response)
-        match_result = propose_result_match.match(response.result)
+        match_result = propose_response_match.match(response.result)
+        assert match_result is not None
+        return match_result.group("seq_num")
+
+    def get_propose_result(self) -> str:
+        stub = ProposeServiceStub(self.channel)
+        q = ProposeResultQuery()
+        response: ProposeResponse = stub.proposeResult(q)
+        self._check_response(response)
+        match_result = propose_result_response_match.match(response.result)
         assert match_result is not None
         return match_result.group("block_hash")
 

@@ -2,8 +2,8 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-from . import ProposeServiceCommon_pb2 as ProposeServiceCommon__pb2
-from . import ProposeServiceV1_pb2 as ProposeServiceV1__pb2
+import ProposeServiceCommon_pb2 as ProposeServiceCommon__pb2
+import ProposeServiceV1_pb2 as ProposeServiceV1__pb2
 
 
 class ProposeServiceStub(object):

@@ -11,9 +11,9 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
-from . import ServiceError_pb2 as ServiceError__pb2
-from . import ProposeServiceCommon_pb2 as ProposeServiceCommon__pb2
-from .scalapb import scalapb_pb2 as scalapb_dot_scalapb__pb2
+import ServiceError_pb2 as ServiceError__pb2
+import ProposeServiceCommon_pb2 as ProposeServiceCommon__pb2
+from scalapb import scalapb_pb2 as scalapb_dot_scalapb__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(

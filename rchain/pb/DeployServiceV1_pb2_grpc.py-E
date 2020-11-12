@@ -2,9 +2,9 @@
 """Client and server classes corresponding to protobuf-defined services."""
 import grpc
 
-from . import CasperMessage_pb2 as CasperMessage__pb2
-from . import DeployServiceCommon_pb2 as DeployServiceCommon__pb2
-from . import DeployServiceV1_pb2 as DeployServiceV1__pb2
+import CasperMessage_pb2 as CasperMessage__pb2
+import DeployServiceCommon_pb2 as DeployServiceCommon__pb2
+import DeployServiceV1_pb2 as DeployServiceV1__pb2
 
 
 class DeployServiceStub(object):
